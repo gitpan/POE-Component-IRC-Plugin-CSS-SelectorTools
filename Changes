@@ -1,5 +1,12 @@
 Revision history for POE-Component-IRC-Plugin-CSS-SelectorTools
 
-0.001   Apr 6, 2008
-        First version, released on an unsuspecting world.
+0.002   2013-11-12
+        - Seems to have been a clash with
+          POE::Component::IRC::Plugin::BaseWrap regarding
+          `triggers` parameters, so the module's `triggers`
+          arg has been renamed to `ztriggers`
+        - Minor fixes to comply with specs and Kwalitee game
+
+0.001   2008-04-06
+        - First version, released on an unsuspecting world.
 

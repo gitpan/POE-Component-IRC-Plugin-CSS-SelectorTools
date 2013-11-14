@@ -3,7 +3,7 @@ package POE::Component::IRC::Plugin::CSS::SelectorTools;
 use warnings;
 use strict;
 
-our $VERSION = '0.001';
+our $VERSION = '0.002';
 
 use Carp;
 use POE;
@@ -12,7 +12,7 @@ use base 'POE::Component::IRC::Plugin::BaseWrap';
 sub _make_default_args {
     return (
         trigger         => qr/^sel(?:ector)?\s+(?=\S+)/i,
-        triggers        => {
+        ztriggers        => {
             link    => qr/^link\s+(?=\S+)/i,
             multi   => qr/^multi\s+(?=\S+)/i,
         },
@@ -31,7 +31,7 @@ sub _make_response_message {
     $self->{debug}
         and carp "CSS SelectorTools: ($in)";
 
-    my $trig_ref = $self->{triggers};
+    my $trig_ref = $self->{ztriggers};
     if ( $in =~ s/$trig_ref->{link}// ) {
         $self->{debug}
             and carp "CSS SelectorTools [LINK]: ($in)";
@@ -87,6 +87,8 @@ sub _prepare_output {
 
 1;
 __END__
+
+=encoding utf8
 
 =head1 NAME
 
@@ -172,7 +174,7 @@ sub section of CONSTRUCTOR section.
                 line_length      => 350,
                 max_length       => 695,
                 trigger          => qr/^sel(?:ector)?\s+(?=\S+)/i,
-                triggers         => {
+                ztriggers        => {
                     link    => qr/^link\s+(?=\S+)/i,
                     multi   => qr/^multi\s+(?=\S+)/i,
                 },
@@ -262,7 +264,7 @@ trigger will be B<removed> from the message, therefore make sure your
 trigger doesn't match the actual data that needs to be processed.
 B<Defaults to:> C<qr/^sel(?:ector)?\s+(?=\S+)/i>
 
-=head3 C<triggers>
+=head3 C<ztriggers>
 
     ->new( triggers => {
                     link    => qr/^link\s+(?=\S+)/i,
@@ -270,12 +272,13 @@ B<Defaults to:> C<qr/^sel(?:ector)?\s+(?=\S+)/i>
         },
     );
 
-B<Optional>. The C<triggers> (not the plural form) argument takes a
+B<Optional>. The C<ztriggers> (not the plural form with "z" at the front)
+argument takes a
 hashref as a value. The keys of that hashref are command names and values
 are regex (C<qr//>) which represent the trigger for the corresponding
-command. Same as with C<trigger>, the individual command C<triggers> will
+command. Same as with C<trigger>, the individual command C<ztriggers> will
 be removed from input so make sure they don't match the actual data
-to be processed. If none of C<triggers> regexes match plugin will inform
+to be processed. If none of C<ztriggers> regexes match plugin will inform
 the user that the used command is invalid.
 Currently plugin provides only two commands:
 

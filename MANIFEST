@@ -2,11 +2,13 @@ Build.PL
 Changes
 MANIFEST
 README
+LICENSE
 lib/POE/Component/IRC/Plugin/CSS/SelectorTools.pm
 t/00-load.t
-t/pod-coverage.t
-t/pod.t
+xt/pod-coverage.t
+xt/pod.t
+xt/kwalitee.t
 examples/css_bot.pl
-t/kwalitee.t
 Makefile.PL
 META.yml
+META.json
